@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODS 6 - Água Potável e Saneamento</title>
+    <style>
+        :root {
+            --ods-blue: #00AED9;
+            --ods-light-blue: #E5F6FA;
+            --ods-dark-blue: #008BB0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--ods-light-blue);
+            color: #333;
+            line-height: 1.6;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--ods-blue);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            height: calc(100vh - 90px); /* Ajusta para altura do header */
+            overflow: hidden;
+        }
+
+        .sidebar {
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .info-section {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+
+        .info-section h2 {
+            color: var(--ods-blue);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--ods-blue);
+            padding-bottom: 5px;
+        }
+
+        .info-card {
+            background: var(--ods-light-blue);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .info-card h3 {
+            color: var(--ods-dark-blue);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .chat-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .chat-header {
+            padding: 15px;
+            background-color: var(--ods-blue);
+            color: white;
+            border-radius: 15px 15px 0 0;
+            text-align: center;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+
+        .message {
+            margin-bottom: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            max-width: 80%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .user-message {
+            background-color: var(--ods-light-blue);
+            margin-left: auto;
+            color: #333;
+        }
+
+        .bot-message {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--ods-blue);
+        }
+
+        .input-container {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+
+        textarea {
+            flex-grow: 1;
+            padding: 12px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            resize: none;
+            height: 50px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--ods-blue);
+        }
+
+        button {
+            padding: 8px 20px;
+            background-color: var(--ods-blue);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--ods-dark-blue);
+        }
+
+        .loading {
+            display: none;
+            margin: 10px 0;
+            font-style: italic;
+            color: #666;
+            text-align: center;
+        }
+
+        .fact-list {
+            list-style: none;
+        }
+
+        .fact-list li {
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .fact-list li::before {
+            content: "•";
+            color: var(--ods-blue);
+            font-size: 1.2em;
+            position: absolute;
+            left: 0;
+            top: -3px;
+        }
+
+        .statistics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .stat-number {
+            font-size: 1.2rem;
+            color: var(--ods-blue);
+            font-weight: bold;
+        }
+
+        .stat-card p {
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                height: auto;
+                overflow: auto;
+            }
+            
+            .statistics {
+                grid-template-columns: 1fr;
+            }
+
+            body {
+                height: auto;
+                overflow: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>ODS 6 - Água Potável e Saneamento</h1>
+        <p>Objetivos de Desenvolvimento Sustentável da ONU</p>
+    </header>
+
+    <div class="container">
+        <div class="sidebar">
+            <section class="info-section">
+                <h2>Sobre o ODS 6</h2>
+                <div class="info-card">
+                    <h3>O que é?</h3>
+                    <p>O Objetivo de Desenvolvimento Sustentável 6 visa assegurar a disponibilidade e gestão sustentável da água e saneamento para todos até 2030.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Principais Metas</h3>
+                    <ul class="fact-list">
+                        <li>Alcançar o acesso universal à água potável</li>
+                        <li>Melhorar a qualidade da água</li>
+                        <li>Aumentar a eficiência do uso da água</li>
+                        <li>Proteger ecossistemas relacionados à água</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <h2>Dados Importantes</h2>
+                <div class="statistics">
+                    <div class="stat-card">
+                        <div class="stat-number">2.2B</div>
+                        <p>Pessoas sem acesso à água potável</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4.2B</div>
+                        <p>Pessoas sem saneamento seguro</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">297k</div>
+                        <p>Crianças morrem por doenças diarreicas</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">80%</div>
+                        <p>Das águas residuais retornam sem tratamento</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-header">
+                <h2>Chat Especialista em ODS 6</h2>
+            </div>
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="loading" id="loading">Processando mensagem...</div>
+            <div class="input-container">
+                <textarea id="userInput" placeholder="Digite sua pergunta sobre água potável e saneamento..."></textarea>
+                <button onclick="sendMessage()">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'https://vinic-m20yg707-uksouth.openai.azure.com/openai/deployments/gpt-35-turboAlexGracio10Out/chat/completions?api-version=2023-03-15-preview';
+        const API_KEY = '3e28881304e24fb4a7bcbbc10617572e';
+        
+        const systemPrompt = {
+            role: "system",
+            content: "Você é um especialista no objetivo de desenvolvimento sustentável (ODS) Água potável e Saneamento. Responda apenas sobre Água potável e Saneamento. A primeira vez que te perguntarem algo, se apresente e dê um resumo do que você pode ajudar. Este resumo deve ter, no máximo 100 palavras e no mínimo 50 palavras"
+        };
+
+        let conversationHistory = [systemPrompt];
+        let isFirstMessage = true;
+
+        async function sendMessage() {
+            const userInput = document.getElementById('userInput').value.trim();
+            if (!userInput) return;
+
+            addMessage(userInput, 'user-message');
+            document.getElementById('userInput').value = '';
+            document.getElementById('loading').style.display = 'block';
+
+            conversationHistory.push({
+                role: "user",
+                content: userInput
+            });
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'api-key': API_KEY
+                    },
+                    body: JSON.stringify({
+                        messages: conversationHistory,
+                        max_tokens: 800,
+                        temperature: 0.7,
+                        top_p: 0.95,
+                        frequency_penalty: 0,
+                        presence_penalty: 0
+                    })
+                });
+
+                const data = await response.json();
+                const botResponse = data.choices[0].message.content;
+
+                conversationHistory.push({
+                    role: "assistant",
+                    content: botResponse
+                });
+
+                addMessage(botResponse, 'bot-message');
+                isFirstMessage = false;
+            } catch (error) {
+                console.error('Erro:', error);
+                addMessage('Desculpe, ocorreu um erro ao processar sua mensagem.', 'bot-message');
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        function addMessage(content, className) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const messageElement = document.createElement('div');
+            messageElement.className = `message ${className}`;
+            messageElement.textContent = content;
+            messagesDiv.appendChild(messageElement);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        document.getElementById('userInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
