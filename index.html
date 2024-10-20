@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ODS 6 - Água Potável e Saneamento</title>
+    <title>SkyNet [AI]</title>
     <style>
         :root {
             --ods-green: #35A719;
@@ -241,47 +241,47 @@
 </head>
 <body>
     <header class="header">
-        <h1>ODS 6 - Água Potável e Saneamento</h1>
-        <p>Objetivos de Desenvolvimento Sustentável da ONU</p>
+        //<h1>ODS 6 - Água Potável e Saneamento</h1>
+        //<p>Objetivos de Desenvolvimento Sustentável da ONU</p>
     </header>
 
     <div class="container">
         <div class="sidebar">
             <section class="info-section">
-                <h2>Sobre o ODS 6</h2>
+                //<h2>Sobre o ODS 6</h2>
                 <div class="info-card">
-                    <h3>O que é?</h3>
-                    <p>O Objetivo de Desenvolvimento Sustentável 6 visa assegurar a disponibilidade e gestão sustentável da água e saneamento para todos até 2030.</p>
+                   // <h3>O que é?</h3>
+                    //<p>O Objetivo de Desenvolvimento Sustentável 6 visa assegurar a disponibilidade e gestão sustentável da água e saneamento para todos até 2030.</p>
                 </div>
                 <div class="info-card">
-                    <h3>Principais Metas</h3>
+                  //  <h3>Principais Metas</h3>
                     <ul class="fact-list">
-                        <li>Alcançar o acesso universal à água potável</li>
-                        <li>Melhorar a qualidade da água</li>
-                        <li>Aumentar a eficiência do uso da água</li>
-                        <li>Proteger ecossistemas relacionados à água</li>
+                      //  <li>Alcançar o acesso universal à água potável</li>
+                       // <li>Melhorar a qualidade da água</li>
+                       // <li>Aumentar a eficiência do uso da água</li>
+                       // <li>Proteger ecossistemas relacionados à água</li>
                     </ul>
                 </div>
             </section>
 
             <section class="info-section">
-                <h2>Dados Importantes</h2>
+               // <h2>Dados Importantes</h2>
                 <div class="statistics">
                     <div class="stat-card">
                         <div class="stat-number">2.2B</div>
-                        <p>Pessoas sem acesso à água potável</p>
+                       // <p>Pessoas sem acesso à água potável</p>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number">4.2B</div>
-                        <p>Pessoas sem saneamento seguro</p>
+                     //   <p>Pessoas sem saneamento seguro</p>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number">297k</div>
-                        <p>Crianças morrem por doenças diarreicas</p>
+                        //<p>Crianças morrem por doenças diarreicas</p>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number">80%</div>
-                        <p>Das águas residuais retornam sem tratamento</p>
+                       // <p>Das águas residuais retornam sem tratamento</p>
                     </div>
                 </div>
             </section>
@@ -289,12 +289,12 @@
 
         <div class="chat-container">
             <div class="chat-header">
-                <h2>Chat Especialista em ODS 6</h2>
+                <h2>Chatea con SkyNet</h2>
             </div>
             <div class="chat-messages" id="chatMessages"></div>
-            <div class="loading" id="loading">Processando mensagem...</div>
+            <div class="loading" id="loading">...</div>
             <div class="input-container">
-                <textarea id="userInput" placeholder="Digite sua pergunta sobre água potável e saneamento..."></textarea>
+                <textarea id="userInput" placeholder="Escriba sus dudas..."></textarea>
                 <button onclick="sendMessage()">Enviar</button>
             </div>
         </div>
@@ -306,7 +306,7 @@
         
         const systemPrompt = {
             role: "system",
-            content: "Você é um especialista no objetivo de desenvolvimento sustentável (ODS) Água potável e Saneamento. Responda apenas sobre Água potável e Saneamento. A primeira vez que te perguntarem algo, se apresente e dê um resumo do que você pode ajudar. Este resumo deve ter, no máximo 100 palavras e no mínimo 50 palavras"
+            content: "Você é um especialista no objetivo de desenvolvimento sustentável (ODS) Programaçao e Experto en todo. Responda apenas sobre programacion de juegos e responder dudas. A primeira vez que te perguntarem algo, se apresente e dê um resumo do que você pode ajudar. Este resumo deve ter, no máximo 1000 palavras e no mínimo 50 palavras"
         };
 
         let conversationHistory = [systemPrompt];
@@ -354,7 +354,7 @@
                 isFirstMessage = false;
             } catch (error) {
                 console.error('Erro:', error);
-                addMessage('Desculpe, ocorreu um erro ao processar sua mensagem.', 'bot-message');
+                addMessage('Disculpe, ocurrio un error al procesar su mensaje.', 'bot-message');
             } finally {
                 document.getElementById('loading').style.display = 'none';
             }
